@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function NavBar() {
@@ -17,9 +18,9 @@ export default function NavBar() {
         }}
       >
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">
+          <Link to="/" className="navbar-brand">
             電商平台
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -57,32 +58,32 @@ export default function NavBar() {
 
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">
+                <Link to="/" className="nav-link active" aria-current="page">
                   首頁
-                </a>
+                </Link>
               </li>
               <li className="nav-item" v-if="!isLogin">
-                <a className="nav-link" href="/member/login">
+                <Link to="/login" className="nav-link" href="/member/login">
                   登入
-                </a>
+                </Link>
               </li>
               <li className="nav-item" v-if="!isLogin">
-                <a className="nav-link" href="/member/register">
+                <Link to="/register" className="nav-link">
                   註冊
-                </a>
+                </Link>
               </li>
-              <li className="nav-item" v-if="isLogin">
+              <li className="nav-item">
                 <span className="nav-link disabled">帳號</span>
               </li>
-              <li className="nav-item" v-if="role == 'VENDOR'">
-                <a className="nav-link" href="/product/add">
+              <li className="nav-item">
+                <Link to="/product/add" className="nav-link">
                   上架商品
-                </a>
+                </Link>
               </li>
-              <li className="nav-item" v-if="role == 'VENDOR'">
-                <a className="nav-link" href="/product/manage">
+              <li className="nav-item">
+                <Link to="/product/manage" className="nav-link">
                   管理商品
-                </a>
+                </Link>
               </li>
               <li className="nav-item" v-if="isLogin">
                 <a className="nav-link" href="/">

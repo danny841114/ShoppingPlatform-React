@@ -36,7 +36,7 @@ export default function Index() {
           <div className="col-md-3 mb-4">
             <div className="card" style={{ width: 288 }}>
               {/* 18rem=18rem */}
-              <img src="" className="card-img-top p-4" alt="Product Image" />
+              {/* <img src="" className="card-img-top p-4" alt="Product Image" /> */}
               <div className="card-body">
                 <h5 className="card-title">產品名稱</h5>
                 <p className="card-text">產品描述</p>
