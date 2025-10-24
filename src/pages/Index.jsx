@@ -1,13 +1,27 @@
-import { Fragment } from "react/jsx-runtime";
+import { useEffect, useState, Fragment } from "react";
+import { API_BASE_URL } from "../util/config";
+import { getProducts } from "../util/api";
 
 export default function Index() {
+  const [products, setProducts] = useState([]); // 陣列解構賦值（array destructuring）
+
+  useEffect(() => {
+    getProducts()
+      .then((res) => {
+        setProducts(res.data); // 之後加入搜尋條件時要改
+      })
+      .catch((err) => {
+        console.error("取得商品失敗：", err);
+      });
+  }, []);
+
   return (
     <Fragment>
       <div className="container mt-5">
         <h3>商品列表</h3>
 
         <div className="mt-2" v-if="totalElements">
-          總共有 N 個商品
+          總共有 {products.length} 個商品
         </div>
 
         <div className="mt-2">
@@ -33,17 +47,22 @@ export default function Index() {
         </div>
 
         <div className="row mt-3">
-          <div className="col-md-3 mb-4">
-            <div className="card" style={{ width: 288 }}>
-              {/* 18rem=18rem */}
-              {/* <img src="" className="card-img-top p-4" alt="Product Image" /> */}
-              <div className="card-body">
-                <h5 className="card-title">產品名稱</h5>
-                <p className="card-text">產品描述</p>
-                <p className="card-text">賣家名稱</p>
+          {products.map((p) => (
+            <div key={p.id} className="col-md-3 mb-4">
+              <div className="card" style={{ width: 288 }}>
+                <img
+                  src={`${API_BASE_URL}/api/product/${p.id}/photo`}
+                  className="card-img-top p-4"
+                  alt=""
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{p.name}</h5>
+                  <p className="card-text">{p.description}</p>
+                  <p className="card-text text-muted">賣家：{p.member?.id}</p>
+                </div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </Fragment>
