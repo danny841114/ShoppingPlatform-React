@@ -9,11 +9,11 @@ export default function Login() {
     e.preventDefault(); // 防止表單預設重整頁面
     try {
       const res = await login({ account, password });
+      document.cookie = "jwt=" + res.data.token + "; path=/";
       console.log("登入成功：", res.data);
-
-      // TODO: 這裡可以加上導頁、儲存 token 等邏輯
-    } catch (err) {
-      console.error("登入失敗：", err);
+      alert("登入成功");
+    } catch (e) {
+      console.error("登入失敗：", e);
       alert("登入失敗，請確認帳號密碼");
     }
   };
@@ -35,7 +35,7 @@ export default function Login() {
               className="form-control"
               id="account"
               value={account}
-              onChange={(e) => setAccount(e.target.value)}  // 綁定輸入
+              onChange={(e) => setAccount(e.target.value)} // 綁定輸入
               required
             />
           </div>

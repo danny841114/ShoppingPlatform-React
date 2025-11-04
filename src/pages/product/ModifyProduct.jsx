@@ -1,8 +1,6 @@
-import { Fragment } from "react/jsx-runtime";
-
 export default function ModifyProuct() {
   return (
-    <Fragment>
+    <>
       <div className="container mt-5">
         <h3>管理商品</h3>
         <table className="table table-hover">
@@ -64,6 +62,6 @@ export default function ModifyProuct() {
           </tbody>
         </table>
       </div>
-    </Fragment>
+    </>
   );
 }

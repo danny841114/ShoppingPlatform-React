@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { getProducts } from "../util/api";
-import { getProductImageUrl } from "../util/api";
+import { getProductImageUrl, getProducts } from "../util/api";
 
 export default function Index() {
   const [products, setProducts] = useState([]); // 陣列解構賦值（array destructuring）
